@@ -33,7 +33,9 @@ class View{
      * @param string $publicPath
      * @param string $contentTag
      */
-	public function __construct($baseUri = '', $publicPath = '', $contentTag = '{CONTENIDO}'){
+	public function __construct($publicPath = '', $baseUri = '', $contentTag = '{CONTENIDO}'){
+        $this->publicPath = $publicPath;
+        $this->baseUri = $baseUri;
         $this->contentTag = $contentTag;
 	}
 
@@ -209,6 +211,6 @@ class View{
      * @return string
      */
     protected function buildHtmlPath($html){
-    	return $this->publicPath.$html;
+        return $this->publicPath."/".$html;
     }
 }
