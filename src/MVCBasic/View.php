@@ -11,13 +11,29 @@ namespace MVCBasic;
 
 class View{
 
+    /**
+     * @var string
+     */
     public $contentTag;
 
-	/**
-	 * Constructor
-	 *
-	 */
-	public function __construct($contentTag = '{CONTENIDO}'){
+    /**
+     * @var string
+     */
+    public $baseUri;
+
+    /**
+     * @var string
+     */
+    public $publicPath;
+
+    /**
+     * Constructor
+     *
+     * @param string $baseUri
+     * @param string $publicPath
+     * @param string $contentTag
+     */
+	public function __construct($baseUri = '', $publicPath = '', $contentTag = '{CONTENIDO}'){
         $this->contentTag = $contentTag;
 	}
 
@@ -114,8 +130,6 @@ class View{
      * @return mixed
      */
     public function render($render, $dict = array(), $addNavPath = true){
-        settype($dict, 'array');
-
         if($addNavPath){
             $this->addNavPath($dict);
         }
@@ -134,7 +148,7 @@ class View{
 	 * @param array (por referencia)
 	 */
 	protected function addNavPath(&$dict){
-		$dict['{wNAV}'] = $this->baseUri();
+		$dict['{wNAV}'] = $this->baseUri;
 	}
 
 	/**
@@ -195,6 +209,6 @@ class View{
      * @return string
      */
     protected function buildHtmlPath($html){
-    	return SpanArt::$STATIC_PATH."html/{$html}.html";
+    	return $this->publicPath.$html;
     }
 }
