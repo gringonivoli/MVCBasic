@@ -14,17 +14,17 @@ class View{
     /**
      * @var string
      */
-    public $contentTag;
+    public static $CONTENT_TAG;
 
     /**
      * @var string
      */
-    public $baseUri;
+    public static $BASE_URI;
 
     /**
      * @var string
      */
-    public $publicPath;
+    public static $PUBLIC_PATH;
 
     /**
      * Constructor
@@ -34,9 +34,9 @@ class View{
      * @param string $contentTag
      */
 	public function __construct($publicPath = '', $baseUri = '', $contentTag = '{CONTENIDO}'){
-        $this->publicPath = $publicPath;
-        $this->baseUri = $baseUri;
-        $this->contentTag = $contentTag;
+        self::$PUBLIC_PATH = ($publicPath === '') ? self::$PUBLIC_PATH : $publicPath;
+        self::$BASE_URI = ($baseUri === '') ? self::$BASE_URI : $baseUri;
+        self::$CONTENT_TAG = $contentTag;
 	}
 
 	/**
@@ -85,7 +85,7 @@ class View{
 			$this->addNavPath($dict);
 		}
 
-        $dict = array($this->contentTag => $render) + $dict;
+        $dict = array(self::$CONTENT_TAG => $render) + $dict;
 
 		$template = $this->getTemplate($template);
 		print str_replace(array_keys($dict), array_values($dict), $template);
@@ -150,7 +150,7 @@ class View{
 	 * @param array (por referencia)
 	 */
 	protected function addNavPath(&$dict){
-		$dict['{wNAV}'] = $this->baseUri;
+		$dict['{wNAV}'] = self::$BASE_URI;
 	}
 
 	/**
@@ -211,6 +211,6 @@ class View{
      * @return string
      */
     protected function buildHtmlPath($html){
-        return $this->publicPath."/".$html;
+        return self::$PUBLIC_PATH."/".$html;
     }
 }
