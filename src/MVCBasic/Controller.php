@@ -3,10 +3,13 @@
 namespace MVCBasic;
 
 /**
+ * Class Controller
+ *
  * Clase abstracta que define un controller basico
- * y su relacion con una view.
- * 
+ * y su relacion con una view general o especifica.
+ *
  * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package MVCBasic
  */
 
 abstract class Controller{

@@ -3,10 +3,13 @@
 namespace MVCBasic;
 
 /**
+ * Class View
+ *
  * Clase que define una view, puede manejar templates
- * y marcas, aunque de una manera muy basica..
- * 
+ * y marcas, aunque de una manera muy basica.
+ *
  * @author Maxi Nivoli <m_nivoli@hotmail.com>
+ * @package MVCBasic
  */
 
 class View{
